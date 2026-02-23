@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    { "name": "worker-a", "kind": "service", "publicExposed": false },
+    { "name": "worker-b", "kind": "service", "publicExposed": false },
+    { "name": "worker-c", "kind": "service", "publicExposed": false },
+    { "name": "aggregator", "kind": "service", "publicExposed": false },
+    { "name": "scheduler", "kind": "service", "publicExposed": false },
+    { "name": "mysql", "kind": "rds" },
+    { "name": "postgres", "kind": "rds" },
+    { "name": "warehouse-db", "kind": "sql" },
+    { "name": "cache", "kind": "service", "publicExposed": false },
+    { "name": "logger", "kind": "service", "publicExposed": false }
+  ],
+  "edges": [
+    { "from": "scheduler", "to": ["worker-a", "worker-b", "worker-c"] },
+    { "from": "worker-a", "to": ["mysql", "aggregator"] },
+    { "from": "worker-b", "to": ["postgres", "aggregator"] },
+    { "from": "worker-c", "to": ["warehouse-db", "aggregator"] },
+    { "from": "aggregator", "to": ["mysql", "cache"] },
+    { "from": "logger", "to": ["postgres"] }
+  ]
+}

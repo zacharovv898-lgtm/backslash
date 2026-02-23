@@ -1,0 +1,139 @@
+{
+  "nodes": [
+    {
+      "name": "a",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "b",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "c",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "d",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "e",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "f",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "g",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "h",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "i",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "j",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "k",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "l",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "a",
+      "to": [
+        "b"
+      ]
+    },
+    {
+      "from": "b",
+      "to": [
+        "c"
+      ]
+    },
+    {
+      "from": "c",
+      "to": [
+        "a"
+      ]
+    },
+    {
+      "from": "d",
+      "to": [
+        "e",
+        "f"
+      ]
+    },
+    {
+      "from": "e",
+      "to": [
+        "g"
+      ]
+    },
+    {
+      "from": "f",
+      "to": [
+        "g"
+      ]
+    },
+    {
+      "from": "g",
+      "to": [
+        "d"
+      ]
+    },
+    {
+      "from": "h",
+      "to": [
+        "i"
+      ]
+    },
+    {
+      "from": "i",
+      "to": [
+        "j"
+      ]
+    },
+    {
+      "from": "j",
+      "to": [
+        "k"
+      ]
+    },
+    {
+      "from": "k",
+      "to": [
+        "l"
+      ]
+    },
+    {
+      "from": "l",
+      "to": [
+        "h"
+      ]
+    }
+  ]
+}

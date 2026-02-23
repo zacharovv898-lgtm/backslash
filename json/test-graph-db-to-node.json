@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    { "name": "api", "kind": "service", "publicExposed": true },
+    { "name": "worker", "kind": "service", "publicExposed": false },
+    { "name": "postgres", "kind": "rds" },
+    { "name": "sync-service", "kind": "service", "publicExposed": false },
+    { "name": "audit-logger", "kind": "service", "publicExposed": false },
+    { "name": "cache-warm", "kind": "service", "publicExposed": false }
+  ],
+  "edges": [
+    { "from": "api", "to": ["worker"] },
+    { "from": "worker", "to": ["postgres"] },
+    { "from": "postgres", "to": ["sync-service", "audit-logger"] },
+    { "from": "sync-service", "to": ["cache-warm"] }
+  ]
+}

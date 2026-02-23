@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    { "name": "api", "kind": "service", "publicExposed": true },
+    { "name": "cache", "kind": "service", "publicExposed": false },
+    { "name": "db", "kind": "rds" }
+  ],
+  "edges": [
+    { "from": "api", "to": ["cache"] },
+    { "from": "ghost-src", "to": ["api"] },
+    { "from": "api", "to": ["phantom-dst"] },
+    { "from": "cache", "to": ["db"] },
+    { "from": "missing-from", "to": ["missing-to"] }
+  ]
+}

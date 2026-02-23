@@ -1,0 +1,107 @@
+{
+  "nodes": [
+    {
+      "name": "internal-a",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-b",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-c",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-d",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-e",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-f",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-g",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-h",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-i",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "internal-j",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "internal-a",
+      "to": [
+        "internal-b",
+        "internal-c"
+      ]
+    },
+    {
+      "from": "internal-b",
+      "to": [
+        "internal-d",
+        "internal-e"
+      ]
+    },
+    {
+      "from": "internal-c",
+      "to": [
+        "internal-f"
+      ]
+    },
+    {
+      "from": "internal-d",
+      "to": [
+        "internal-g"
+      ]
+    },
+    {
+      "from": "internal-e",
+      "to": [
+        "internal-g",
+        "internal-h"
+      ]
+    },
+    {
+      "from": "internal-f",
+      "to": [
+        "internal-h"
+      ]
+    },
+    {
+      "from": "internal-g",
+      "to": [
+        "internal-i"
+      ]
+    },
+    {
+      "from": "internal-h",
+      "to": [
+        "internal-j"
+      ]
+    }
+  ]
+}

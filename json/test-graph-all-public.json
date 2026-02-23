@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    { "name": "gateway", "kind": "service", "publicExposed": true },
+    { "name": "auth", "kind": "service", "publicExposed": true },
+    { "name": "users", "kind": "service", "publicExposed": true },
+    { "name": "orders", "kind": "service", "publicExposed": true },
+    { "name": "payments", "kind": "service", "publicExposed": true },
+    { "name": "postgres", "kind": "rds", "publicExposed": true },
+    { "name": "redis", "kind": "service", "publicExposed": true }
+  ],
+  "edges": [
+    { "from": "gateway", "to": ["auth", "users", "orders"] },
+    { "from": "auth", "to": ["postgres"] },
+    { "from": "users", "to": ["postgres", "redis"] },
+    { "from": "orders", "to": ["payments"] },
+    { "from": "payments", "to": ["postgres"] }
+  ]
+}

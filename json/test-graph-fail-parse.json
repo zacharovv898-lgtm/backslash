@@ -1,0 +1,7 @@
+{
+  "nodes": [
+    { "name": "a", "kind": "service" },
+    { "name": "b", "kind": "service" },
+  ],
+  "edges": []
+}

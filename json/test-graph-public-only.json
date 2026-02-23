@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    { "name": "front", "kind": "service", "publicExposed": true },
+    { "name": "mobile-api", "kind": "service", "publicExposed": true },
+    { "name": "back", "kind": "service", "publicExposed": false },
+    { "name": "auth", "kind": "service", "publicExposed": false },
+    { "name": "profile", "kind": "service", "publicExposed": false },
+    { "name": "feed", "kind": "service", "publicExposed": false },
+    { "name": "search", "kind": "service", "publicExposed": false },
+    { "name": "recommend", "kind": "service", "publicExposed": false },
+    { "name": "cache", "kind": "service", "publicExposed": false },
+    { "name": "queue", "kind": "service", "publicExposed": false }
+  ],
+  "edges": [
+    { "from": "front", "to": ["back", "auth"] },
+    { "from": "mobile-api", "to": ["back", "auth", "feed"] },
+    { "from": "back", "to": ["profile", "feed", "search"] },
+    { "from": "auth", "to": ["profile"] },
+    { "from": "feed", "to": ["recommend", "cache"] },
+    { "from": "search", "to": ["cache", "recommend"] },
+    { "from": "recommend", "to": ["queue"] }
+  ]
+}

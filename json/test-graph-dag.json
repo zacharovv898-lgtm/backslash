@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "name": "gateway",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "auth",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "users",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "orders",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "payments",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "inventory",
+      "kind": "service",
+      "publicExposed": false,
+      "vulnerabilities": [
+        {
+          "file": "train-ticket/ts-auth-service/src/main/java/auth/service/impl/UserServiceImpl.java",
+          "severity": "medium",
+          "message": "Detected string concatenation with a non-literal variable in a SQL statement. This could lead to SQL injection if the variable is user-controlled and not properly sanitized.",
+          "metadata": {
+            "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"
+          }
+        }
+      ]
+    },
+    {
+      "name": "notifications",
+      "kind": "service",
+      "publicExposed": false,
+      "vulnerabilities": [
+        {
+          "file": "train-ticket/ts-auth-service/src/main/java/auth/service/impl/UserServiceImpl.java",
+          "severity": "medium",
+          "message": "Detected string concatenation with a non-literal variable in a SQL statement. This could lead to SQL injection if the variable is user-controlled and not properly sanitized.",
+          "metadata": {
+            "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"
+          }
+        }
+      ]
+    },
+    {
+      "name": "audit",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "postgres",
+      "kind": "rds"
+    },
+    {
+      "name": "postgres-replica",
+      "kind": "rds"
+    },
+    {
+      "name": "redis-cache",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "search",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "gateway",
+      "to": [
+        "auth",
+        "users",
+        "orders"
+      ]
+    },
+    {
+      "from": "auth",
+      "to": [
+        "postgres",
+        "audit"
+      ]
+    },
+    {
+      "from": "users",
+      "to": [
+        "postgres",
+        "redis-cache"
+      ]
+    },
+    {
+      "from": "orders",
+      "to": [
+        "payments",
+        "notifications"
+      ]
+    },
+    {
+      "from": "payments",
+      "to": [
+        "postgres",
+        "audit"
+      ]
+    },
+    {
+      "from": "inventory",
+      "to": [
+        "postgres-replica",
+        "audit"
+      ]
+    },
+    {
+      "from": "notifications",
+      "to": [
+        "redis-cache"
+      ]
+    },
+    {
+      "from": "audit",
+      "to": [
+        "postgres"
+      ]
+    },
+    {
+      "from": "search",
+      "to": [
+        "postgres-replica",
+        "inventory"
+      ]
+    }
+  ]
+}

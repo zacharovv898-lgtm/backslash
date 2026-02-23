@@ -1,0 +1,153 @@
+{
+  "nodes": [
+    {
+      "name": "gateway",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "ppp",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "ppp2",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "ppp3",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "ppp1",
+      "kind": "service"
+    },
+    {
+      "name": "vuln-hub",
+      "kind": "service",
+      "publicExposed": false,
+      "vulnerabilities": [
+        {
+          "severity": "critical",
+          "message": "All traffic passes through this service"
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "users",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "orders",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "payments",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "inventory",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "notifications",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "analytics",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "postgres",
+      "kind": "rds"
+    },
+    {
+      "name": "redis",
+      "kind": "rds"
+    }
+  ],
+  "edges": [
+    {
+      "from": "gateway",
+      "to": [
+        "vuln-hub"
+      ]
+    },
+    {
+      "from": "vuln-hub",
+      "to": [
+        "auth",
+        "users",
+        "orders",
+        "payments",
+        "inventory",
+        "notifications",
+        "analytics"
+      ]
+    },
+    {
+      "from": "auth",
+      "to": [
+        "postgres"
+      ]
+    },
+    {
+      "from": "users",
+      "to": [
+        "postgres",
+        "redis"
+      ]
+    },
+    {
+      "from": "orders",
+      "to": [
+        "payments",
+        "inventory",
+        "notifications"
+      ]
+    },
+    {
+      "from": "ppp2",
+      "to": [
+        "gateway"
+      ]
+    },
+    {
+      "from": "ppp3",
+      "to": [
+        "gateway"
+      ]
+    },
+    {
+      "from": "ppp",
+      "to": [
+        "users"
+      ]
+    },
+    {
+      "from": "ppp1",
+      "to": [
+        "ppp"
+      ]
+    },
+    {
+      "from": "analytics",
+      "to": [
+        "postgres"
+      ]
+    }
+  ]
+}

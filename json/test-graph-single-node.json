@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    { "name": "standalone", "kind": "service", "publicExposed": true },
+    { "name": "orphan-a", "kind": "service", "publicExposed": false },
+    { "name": "orphan-b", "kind": "service", "publicExposed": false },
+    { "name": "orphan-c", "kind": "service", "publicExposed": false },
+    { "name": "orphan-d", "kind": "service", "publicExposed": false },
+    { "name": "orphan-e", "kind": "service", "publicExposed": false },
+    { "name": "orphan-f", "kind": "service", "publicExposed": false },
+    { "name": "orphan-g", "kind": "service", "publicExposed": false },
+    { "name": "orphan-h", "kind": "service", "publicExposed": false }
+  ],
+  "edges": []
+}

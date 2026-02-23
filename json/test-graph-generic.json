@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "name": "frontend",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "api",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "api1",
+      "kind": "service"
+    },
+    {
+      "name": "auth",
+      "kind": "service",
+      "publicExposed": false,
+      "vulnerabilities": [
+        {
+          "severity": "high",
+          "message": "SQL injection"
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "orders",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "payments",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "notifications",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "main-db",
+      "kind": "rds"
+    },
+    {
+      "name": "analytics-db",
+      "kind": "sql"
+    },
+    {
+      "name": "ana2",
+      "kind": "ssdsdsd",
+      "vulnerabilities": [
+        {
+          "severity": "medium",
+          "message": "IDOR"
+        }
+      ]
+    },
+    {
+      "name": "ana23",
+      "kind": "ssdsdsd"
+    },
+    {
+      "name": "cache",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "frontend",
+      "to": [
+        "api"
+      ]
+    },
+    {
+      "from": "api1",
+      "to": [
+        "ana2",
+        "auth",
+        "users",
+        "orders"
+      ]
+    },
+    {
+      "from": "api",
+      "to": [
+        "auth",
+        "users",
+        "orders"
+      ]
+    },
+    {
+      "from": "auth",
+      "to": [
+        "main-db",
+        "cache"
+      ]
+    },
+    {
+      "from": "users",
+      "to": [
+        "main-db"
+      ]
+    },
+    {
+      "from": "ana23",
+      "to": [
+        "orders"
+      ]
+    },
+    {
+      "from": "orders",
+      "to": [
+        "payments",
+        "main-db",
+        "ana2"
+      ]
+    },
+    {
+      "from": "payments",
+      "to": [
+        "main-db",
+        "notifications"
+      ]
+    },
+    {
+      "from": "notifications",
+      "to": [
+        "cache"
+      ]
+    },
+    {
+      "from": "orders",
+      "to": [
+        "analytics-db"
+      ]
+    }
+  ]
+}

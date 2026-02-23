@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    { "name": "web", "kind": "service", "publicExposed": true },
+    { "name": "api", "kind": "service", "publicExposed": false },
+    { "name": "main-db", "kind": "rds", "publicExposed": true },
+    { "name": "analytics-db", "kind": "sql", "publicExposed": true },
+    { "name": "replica-db", "kind": "rds", "publicExposed": true },
+    { "name": "cache", "kind": "service", "publicExposed": false }
+  ],
+  "edges": [
+    { "from": "web", "to": ["api"] },
+    { "from": "api", "to": ["main-db", "cache"] },
+    { "from": "api", "to": ["analytics-db"] },
+    { "from": "cache", "to": ["replica-db"] }
+  ]
+}

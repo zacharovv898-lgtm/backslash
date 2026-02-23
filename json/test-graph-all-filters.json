@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    { "name": "web", "kind": "service", "publicExposed": true },
+    { "name": "api-gateway", "kind": "service", "publicExposed": true },
+    { "name": "vuln-auth", "kind": "service", "publicExposed": false, "vulnerabilities": [{ "severity": "high", "message": "SQL injection risk" }] },
+    { "name": "vuln-parser", "kind": "service", "publicExposed": false, "vulnerabilities": [{ "severity": "medium", "message": "XSS in output" }] },
+    { "name": "billing", "kind": "service", "publicExposed": false },
+    { "name": "notifications", "kind": "service", "publicExposed": false },
+    { "name": "analytics", "kind": "service", "publicExposed": false },
+    { "name": "user-db", "kind": "rds" },
+    { "name": "orders-db", "kind": "rds" },
+    { "name": "events-db", "kind": "sql" },
+    { "name": "cache", "kind": "service", "publicExposed": false },
+    { "name": "search", "kind": "service", "publicExposed": false }
+  ],
+  "edges": [
+    { "from": "web", "to": ["api-gateway"] },
+    { "from": "api-gateway", "to": ["vuln-auth", "vuln-parser", "billing"] },
+    { "from": "vuln-auth", "to": ["user-db", "cache"] },
+    { "from": "vuln-parser", "to": ["events-db"] },
+    { "from": "billing", "to": ["orders-db", "notifications"] },
+    { "from": "notifications", "to": ["cache"] },
+    { "from": "analytics", "to": ["events-db", "orders-db"] },
+    { "from": "search", "to": ["user-db", "orders-db"] }
+  ]
+}

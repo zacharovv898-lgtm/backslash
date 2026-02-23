@@ -1,0 +1,106 @@
+{
+  "nodes": [
+    {
+      "name": "api",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "cache",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "queue",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "notify",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "analytics",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "metrics",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "tracing",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "db",
+      "kind": "rds"
+    },
+    {
+      "name": "redis",
+      "kind": "rds"
+    },
+    {
+      "name": "s3",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "cdn",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "api",
+      "to": [
+        "cache",
+        "queue",
+        "db"
+      ]
+    },
+    {
+      "from": "cache",
+      "to": [
+        "redis"
+      ]
+    },
+    {
+      "from": "queue",
+      "to": [
+        "notify",
+        "analytics",
+        "metrics"
+      ]
+    },
+    {
+      "from": "notify",
+      "to": [
+        "s3"
+      ]
+    },
+    {
+      "from": "analytics",
+      "to": [
+        "db"
+      ]
+    },
+    {
+      "from": "metrics",
+      "to": [
+        "tracing",
+        "db"
+      ]
+    },
+    {
+      "from": "tracing",
+      "to": [
+        "redis"
+      ]
+    }
+  ]
+}

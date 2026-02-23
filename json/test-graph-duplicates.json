@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "name": "api",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "api",
+      "kind": "service",
+      "publicExposed": true
+    },
+    {
+      "name": "db",
+      "kind": "rds"
+    },
+    {
+      "name": "db",
+      "kind": "rds"
+    },
+    {
+      "name": "cache",
+      "kind": "service",
+      "publicExposed": false
+    },
+    {
+      "name": "worker",
+      "kind": "service",
+      "publicExposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "api",
+      "to": [
+        "db"
+      ]
+    },
+    {
+      "from": "api",
+      "to": [
+        "db"
+      ]
+    },
+    {
+      "from": "api",
+      "to": [
+        "cache"
+      ]
+    },
+    {
+      "from": "cache",
+      "to": [
+        "db"
+      ]
+    },
+    {
+      "from": "worker",
+      "to": [
+        "db"
+      ]
+    }
+  ]
+}
